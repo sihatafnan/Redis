@@ -7,6 +7,7 @@ Fun Fact: Redis means
 ## Contents
 + **Installation**
 + **Before you start**
++ **Configure Redis Server on a different port**
 + **Read,Write,Update,Delete**
 + **Setting Time Limit on Keys**
 + **MSET,INCR,DECR**
@@ -25,6 +26,17 @@ Follow this link : https://www.javatpoint.com/redis-installation-on-ubuntu
 There's another way to install redix i.e. using the zip file.I won't recommend that because in that case you've to run redis-server each time you start the redis-cli.If you've followed the way I described here,you needn't worry about it.
 
 If you're on a Windows Operating System,try to use **WSL(Windows Subsystem for Linux)**(To enable WSL: https://bit.ly/3gMXyZQ) instead of cmd because WSL provides you with suggestions while writing.
+
+**Configure Redis Server on a different port**
+Redis server runs on default port 6379.But we can configure it to a different port.Run the following command in WSL to start the server on port 6380.
+```
+redis-server --port 6380
+```
+Open another WSL window and start the redis-cli on the same port
+```
+redis-cli -p 6380
+```
+And you're done.
 
 ## Write,Read,Update,Delete
 
@@ -100,4 +112,52 @@ Also,we can increment/decrement the value of fields
 
 ![](images/hincrby.png)
 
+## List
+A List is created by using a Redis command that pushes data followed by a key name. There are two commands that we can use: RPUSH and LPUSH. If the key doesn't exist, these commands will return a new List with the passed arguments as elements. If the key already exists or it is not a List, an error is returned.
+`RPUSH` inserts a new element at the end of the List (at the tail):
 
+> RPUSH key value [value ...]
+
+`LRANGE` extracts the elements of a list
+
+> LRANGE key start stop
+
+LPUSH behaves the same as RPUSH except that it inserts the element at the front of the List (at the header):
+
+> LPUSH key value [value ...]
+
+Then there are `lpop` and `rpop` to remove and return the first and last element from the list.
+
+![](images/list.png)
+
+## Set
+In Redis, a Set is similar to a List except that it doesn't keep any specific order for its elements and each element must be unique.We create a Set by using the SADD command that adds the specified members to the key:
+
+> SADD key member [member ...]
+
+We can remove members from a Set by using the `SREM` command:
+
+> SREM key member [member ...]
+
+To verify that a member is part of a Set, we can use the `SISMEMBER` command:
+
+> SISMEMBER key member
+
+To show all the members that exist in a Set, we can use the `SMEMBERS` command:
+
+> SMEMBERS key
+
+![](images/set.png)
+
+## Sorted Set
+A Sorted Set is, in essence, a Set: it contains unique, non-repeating string members. However, while members of a Set are not ordered (Redis is free to return the elements in any order at every call of a Set), each member of a Sorted Set is linked to a floating point value called the score which is used by Redis to determine the order of the Sorted Set members. Since, every element of a Sorted Set is mapped to a value, it also has an architecture similar to Hash.
+
+Using `ZADD` adds all the specified members with specified scores to the Sorted Set:
+
+> zadd set_name score value,...
+
+`ZRANGE` returns the specified range of members in the Sorted Set:
+
+> ZRANGE key start stop [WITHSCORES]
+
+![](images/sortedset.png)
