@@ -8,6 +8,7 @@ Fun Fact: Redis means
 + Installation
 + Before you start
 + Read,Write,Update,Delete
++ Setting Time Limit on Keys
 
 ## Installing On Windows
 Go to Redis official website https://redis.io/ and Scroll down to Windows section. You will see learn more. Click on it and you will get release page.Download the msi file and install it.
@@ -47,4 +48,27 @@ And to delete a key
 > del key
 
 ![](images/delete.png)
+
+**Notice something curious**: We did not have to put quotation marks around a single string value we wanted to store.Both `set name afnan` and `set name "afnan"`are same in redis.Even we can wrap up both key and value by quotation or not,no problem with it.
+
+But if we use multiple strings, we must use quotation i.e. `set "first name" afnan` or `set name "sihat afnan"`.Otherwise it will show error.
+
+## Setting Time Limit on Keys
+We can set a time limit to keys.it means that the key will be destroyed after a certain period of time.To set a time limit to an already declared key,
+
+> EXPIRE key seconds
+
+And to check how many seconds it has before being destroyed,
+
+> TTL key
+
+![](images/expire.png)
+
+Or we can set the time while creating the key.
+
+>  set key value [EX seconds]
+
+Or there's another command called **SETEX**
+
+> SETEX key seconds value 
 
