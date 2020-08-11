@@ -5,12 +5,12 @@ Redis is an open source (BSD licensed), in-memory data structure store, used as 
 Fun Fact: Redis means 
 > "REmote DIctionary Server."
 ## Contents
-+ Installation
-+ Before you start
-+ Read,Write,Update,Delete
-+ Setting Time Limit on Keys
-+ MSET,INCR,DECR
-
++ **Installation**
++ **Before you start**
++ **Read,Write,Update,Delete**
++ **Setting Time Limit on Keys**
++ **MSET,INCR,DECR**
++ **Hashes**
 ## Installing On Windows
 Go to Redis official website https://redis.io/ and Scroll down to Windows section. You will see learn more. Click on it and you will get release page.Download the msi file and install it.
 Start the **redis server** and **redis client** from the installation folder.
@@ -85,4 +85,19 @@ using `MSET` , we can declare multiple keys in a same line.`INCR` and `DECR` are
 We can increment or decrement by a fised value
 
 ![](images/incrby.png)
+
+## Hashes
+
+In Redis, a Hash is a data structure that maps a string key with field-value pairs. Thus, Hashes are useful to represent objects. They key is the name of the Hash and the value represents a sequence of field-name field-value entries. We could describe a computer object as follows:
+
+**computer name "MacBook Pro" year 2015 disk 512 ram 16**
+
+We can use `HSET` command to create hashes and hget for extracting the key or values.If we want to declare all fields in one line,we've to use `HMSET`.Look at the following image
+
+![](images/hset.png)
+
+Also,we can increment/decrement the value of fields
+
+![](images/hincrby.png)
+
 
