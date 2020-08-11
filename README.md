@@ -9,6 +9,7 @@ Fun Fact: Redis means
 + Before you start
 + Read,Write,Update,Delete
 + Setting Time Limit on Keys
++ MSET,INCR,DECR
 
 ## Installing On Windows
 Go to Redis official website https://redis.io/ and Scroll down to Windows section. You will see learn more. Click on it and you will get release page.Download the msi file and install it.
@@ -71,4 +72,17 @@ Or we can set the time while creating the key.
 Or there's another command called **SETEX**
 
 > SETEX key seconds value 
+
+If we want to use miliseconds,we can use **PSETEX**
+
+> PSETEX key milliseconds value  
+
+## MSET,INCR,DECR
+using `MSET` , we can declare multiple keys in a same line.`INCR` and `DECR` are used to incrememnt and decrement a number.
+
+![]images/incr.png)
+
+We can increment or decrement by a fised value
+
+![](images/incrby.png)
 
