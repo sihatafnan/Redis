@@ -12,6 +12,9 @@ Fun Fact: Redis means
 + **Setting Time Limit on Keys**
 + **MSET,INCR,DECR**
 + **Hashes**
++ **List**
++ **Set**
++ **Sorted set**
 ## Installing On Windows
 Go to Redis official website https://redis.io/ and Scroll down to Windows section. You will see learn more. Click on it and you will get release page.Download the msi file and install it.
 Start the **redis server** and **redis client** from the installation folder.
@@ -28,6 +31,7 @@ There's another way to install redix i.e. using the zip file.I won't recommend t
 If you're on a Windows Operating System,try to use **WSL(Windows Subsystem for Linux)**(To enable WSL: https://bit.ly/3gMXyZQ) instead of cmd because WSL provides you with suggestions while writing.
 
 **Configure Redis Server on a different port**
+
 Redis server runs on default port 6379.But we can configure it to a different port.Run the following command in WSL to start the server on port 6380.
 ```
 redis-server --port 6380
