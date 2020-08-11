@@ -35,3 +35,16 @@ To retrieve the value ,
 > get key
 
 ![](images/read_write.png)
+
+We can update the value of a key
+
+> set key new_value
+
+![](images/update.png)
+
+And to delete a key
+
+> del key
+
+![](images/delete.png)
+
