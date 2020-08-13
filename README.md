@@ -186,5 +186,3 @@ True
 ```
 
 This doc is being updated.Stay tuned
-
-b'bar
