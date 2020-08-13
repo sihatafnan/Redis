@@ -15,6 +15,7 @@ Fun Fact: Redis means
 + **List**
 + **Set**
 + **Sorted set**
++ **Plugging Redis With Python**
 ## Installing On Windows
 Go to Redis official website https://redis.io/ and Scroll down to Windows section. You will see learn more. Click on it and you will get release page.Download the msi file and install it.
 Start the **redis server** and **redis client** from the installation folder.
@@ -165,3 +166,25 @@ Using `ZADD` adds all the specified members with specified scores to the Sorted 
 > ZRANGE key start stop [WITHSCORES]
 
 ![](images/sortedset.png)
+
+## Plugging Redis With Python
+There's a python client for redis.It can be installed via
+```python
+pip3 install redis
+```
+After installing,we can do all the things we did in redis-cli using Redis object.
+```python
+>>> import redis
+>>> r = redis.Redis(host='localhost', port=6379, db=0)
+```
+To read and write data,
+```python
+>>> r.set('foo','bar')
+True
+>>> r.get('foo')
+'bar'
+```
+
+This doc is being updated.Stay tuned
+
+b'bar
