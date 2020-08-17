@@ -245,6 +245,7 @@ redis-trib.rb create --replicas 1 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 1
 ```
 If everything's fine,you will see a ```[OK] All 16384 slots covered``` message.
 Then you can play around with the cluster you just created.
+
 ![](images/cluster.png)
 
 This doc is being updated.Stay tuned
