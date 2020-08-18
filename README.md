@@ -219,8 +219,9 @@ cluster-config-file nodes.conf
 cluster-node-timeout 5000
 appendonly yes
 ```
-Let's look at what these things mean
-Normal Redis instances can't be part of a Redis Cluster; only nodes that are started as cluster nodes can. In order to start a Redis instance as a cluster node enable the cluster support uncommenting the following:
+Let's look at what these things mean.
+
+Normal Redis instances can't be part of a Redis Cluster; only nodes that are started as cluster nodes can. In order to start a Redis instance as a cluster node enable the cluster support:
 > cluster-enabled yes
 
 Every cluster node has a cluster configuration file. This file is not intended to be edited by hand. It is created and updated by Redis nodes.Every Redis Cluster node requires a different cluster configuration file.Make sure that instances running in the same system do not have overlapping cluster configuration file names.
