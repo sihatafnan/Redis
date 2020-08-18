@@ -295,4 +295,44 @@ Then you can play around with the cluster you just created.
 #### Why Do you need a minimum of 3 masters?
 During the failure detection, the majority of the master nodes are required to come to an agreement. If there are only 2 masters, say A and B and B failed, then the A master node cannot reach to a decision according to the protocol. The A node needs another third node, say C, to tell A that it also cannot reach B.
 
+#### Redis Cluster with Python
+First,clone this repo
+```
+git clone https://github.com/AfnanCSE98/Redis
+```
+There are mainly 3 files.
+..* redis_cluster_client.py
+..* write_to_cluster.py
+..* read_from_cluster.py
+```redis_cluster_client``` is used to connect our cluster.```write_to_cluster``` writes data to cluster and ```read_from_cluster``` reads those data.After cloning,create an .env file and copy paste the information from .env.example.
+
+**.env params**
+
+- **WORKER_COUNT** is an integer value, pointing how many workers will be inserting data.
+
+- **SINGLE_WORKER_TASK_COUNT** is an integer, it denotes number of data will be written by a single worker.
+
+- **READ_COUNT** is an integer, when we use read_from_cluster, how many data are we attempting to read.
+
+- **CLUSTER_HOST** is simply the host ip of your cluster.
+
+- **CLUSTER_PORT_RANGE_STARTS** is an integer, denoting the starting port number.
+
+- **CLUSTER_PORT_RANGE_ENDS** is an integer, denoting the ending port number.
+
+If we have 5 in WORKER COUNT and 10 in SINGLE_WORKER_COUNT, total 5 x 10 = 50 data will be written.
+The application will use the CLUSTER_PORT_RANGE_* to generate port numbers to connect to the cluster. For example, if you have 50 nodes, form 7001 to 7050. No need to write 7001,7002,7003, ... , 7050. Just write CLUSTER_PORT_RANGE_STARTS=7001 and CLUSTER_PORT_RANGE_ENDS=7050.
+The application needs python version 3, python-dotenv, redis-py-cluster and faker.Install them with
+```
+pip3 inatall python-dotenv redis-py-cluster faker
+```
+The application will run asyncronously for writing to the cluster. To write data ,
+```
+python3 write_to_cluster.py
+```
+And to read data,
+```
+python3 read_from_cluster.py
+```
+
 This doc is being updated.Stay tuned
