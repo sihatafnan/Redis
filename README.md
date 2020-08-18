@@ -232,12 +232,12 @@ Most other internal time limits are multiple of the node timeout.
 > cluster-node-timeout 15000
 
 A slave of a failing master will avoid to start a failover if its data looks too old.There is no simple way for a slave to actually have a exact measure of its "data age", so the following two checks are performed:
-1. If there are multiple slaves able to failover, they exchange messages in order to try to give an advantage to the slave with the best replication offset (more data from the master processed).Slaves will try to get their rank by offset, and apply to the start of the failover a delay proportional to their rank.
+**1**.If there are multiple slaves able to failover, they exchange messages in order to try to give an advantage to the slave with the best replication offset (more data from the master processed).Slaves will try to get their rank by offset, and apply to the start of the failover a delay proportional to their rank.
 
-2.Every single slave computes the time of the last interaction with its master. This can be the last ping or command received (if the master is still in the "connected" state), or the time that elapsed since the disconnection with the master (if the replication link is currently down).If the last interaction is too old, the slave will not try to failover at all.
+**2**.Every single slave computes the time of the last interaction with its master. This can be the last ping or command received (if the master is still in the "connected" state), or the time that elapsed since the disconnection with the master (if the replication link is currently down).If the last interaction is too old, the slave will not try to failover at all.
 The point "2" can be tuned by user. Specifically a slave will not perform the failover if, since the last interaction with the master, the time elapsed is greater than:
   
-  (node-timeout * slave-validity-factor) + repl-ping-slave-period
+> (node-timeout * slave-validity-factor) + repl-ping-slave-period
  
 So for example if node-timeout is 30 seconds, and the slave-validity-factor is 10, and assuming a default repl-ping-slave-period of 10 seconds, the slave will not try to failover if it was not able to talk with the master for longer than 310 seconds.
    
@@ -292,4 +292,5 @@ Then you can play around with the cluster you just created.
 
 #### Why Do you need a minimum of 3 masters?
 During the failure detection, the majority of the master nodes are required to come to an agreement. If there are only 2 masters, say A and B and B failed, then the A master node cannot reach to a decision according to the protocol. The A node needs another third node, say C, to tell A that it also cannot reach B.
+
 This doc is being updated.Stay tuned
