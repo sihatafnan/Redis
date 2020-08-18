@@ -1,0 +1,10 @@
+.idea
+__pycache__
+dump.rdb
+.env
+cluster/cluster-node-*.conf
+cluster/*.rdb
+cluster/*.aof
+data.txt
+**/*.rdb
+**/*.aof
